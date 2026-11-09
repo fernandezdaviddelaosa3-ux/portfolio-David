@@ -1,37 +1,17 @@
 document.addEventListener('DOMContentLoaded', () => {
 
-  // 1. SISTEMA DE NAVEGACIÓN POR SECCIONES SIN DESPLAZAMIENTO (Tabs)
-  const navButtons = document.querySelectorAll('.nav-btn');
-  const sections = document.querySelectorAll('.content-section');
-  const switchTabs = document.querySelectorAll('.switch-tab');
+  // 1. MENÚ MÓVIL (Hamburguesa)
+  const mobileMenu = document.getElementById('mobileMenu');
+  const navLinks = document.getElementById('navLinks');
 
-  function changeSection(targetId) {
-    // Desactivar botones y ocultar secciones
-    navButtons.forEach(btn => btn.classList.remove('active'));
-    sections.forEach(sec => sec.classList.remove('active'));
-
-    // Activar botón correspondiente
-    const activeBtn = document.querySelector(`.nav-btn[data-section="${targetId}"]`);
-    if (activeBtn) activeBtn.classList.add('active');
-
-    // Mostrar sección con animación
-    const activeSection = document.getElementById(targetId);
-    if (activeSection) {
-      activeSection.classList.add('active');
-    }
-  }
-
-  navButtons.forEach(btn => {
-    btn.addEventListener('click', () => {
-      const sectionId = btn.getAttribute('data-section');
-      changeSection(sectionId);
-    });
+  mobileMenu.addEventListener('click', () => {
+    navLinks.classList.toggle('active');
   });
 
-  switchTabs.forEach(btn => {
-    btn.addEventListener('click', () => {
-      const target = btn.getAttribute('data-target');
-      changeSection(target);
+  // Cerrar menú al hacer clic en cualquier enlace
+  document.querySelectorAll('.nav-links a').forEach(link => {
+    link.addEventListener('click', () => {
+      navLinks.classList.remove('active');
     });
   });
 
@@ -51,7 +31,7 @@ document.addEventListener('DOMContentLoaded', () => {
       charIndex++;
       setTimeout(type, 80);
     } else {
-      setTimeout(erase, 2000);
+      setTimeout(erase, 2200);
     }
   }
 
@@ -62,13 +42,30 @@ document.addEventListener('DOMContentLoaded', () => {
       setTimeout(erase, 40);
     } else {
       textIndex = (textIndex + 1) % textArray.length;
-      setTimeout(type, 500);
+      setTimeout(type, 400);
     }
   }
 
   type();
 
-  // 3. INCLINACIÓN 3D INTERACTIVA EN TARJETAS (Tilt Effect)
+  // 3. ANIMACIONES DE APARICIÓN AL HACER SCROLL (Scroll Reveal)
+  const revealElements = document.querySelectorAll('.reveal');
+
+  const revealOnScroll = () => {
+    const triggerBottom = window.innerHeight * 0.85;
+
+    revealElements.forEach(el => {
+      const boxTop = el.getBoundingClientRect().top;
+      if (boxTop < triggerBottom) {
+        el.classList.add('active');
+      }
+    });
+  };
+
+  window.addEventListener('scroll', revealOnScroll);
+  revealOnScroll(); // Ejecutar al cargar por si hay elementos visibles
+
+  // 4. EFECTO TILT (Inclinación 3D sutil en tarjetas)
   const tiltCards = document.querySelectorAll('.tilt-card');
 
   tiltCards.forEach(card => {
@@ -80,8 +77,8 @@ document.addEventListener('DOMContentLoaded', () => {
       const centerX = rect.width / 2;
       const centerY = rect.height / 2;
 
-      const rotateX = ((y - centerY) / centerY) * -5;
-      const rotateY = ((x - centerX) / centerX) * 5;
+      const rotateX = ((y - centerY) / centerY) * -4;
+      const rotateY = ((x - centerX) / centerX) * 4;
 
       card.style.transform = `perspective(1000px) rotateX(${rotateX}deg) rotateY(${rotateY}deg) translateY(-4px)`;
     });
@@ -91,7 +88,7 @@ document.addEventListener('DOMContentLoaded', () => {
     });
   });
 
-  // 4. FONDO ANIMADO DE RED NEURONAL / PARTÍCULAS (Canvas)
+  // 5. FONDO ANIMADO DE RED NEURONAL / PARTÍCULAS (Canvas)
   const canvas = document.getElementById('bg-canvas');
   const ctx = canvas.getContext('2d');
 
@@ -103,15 +100,15 @@ document.addEventListener('DOMContentLoaded', () => {
   window.addEventListener('resize', resizeCanvas);
 
   const particles = [];
-  const particleCount = 45;
+  const particleCount = 50;
 
   for (let i = 0; i < particleCount; i++) {
     particles.push({
       x: Math.random() * canvas.width,
       y: Math.random() * canvas.height,
-      vx: (Math.random() - 0.5) * 0.6,
-      vy: (Math.random() - 0.5) * 0.6,
-      radius: Math.random() * 2 + 1
+      vx: (Math.random() - 0.5) * 0.5,
+      vy: (Math.random() - 0.5) * 0.5,
+      radius: Math.random() * 1.5 + 1
     });
   }
 
@@ -128,19 +125,19 @@ document.addEventListener('DOMContentLoaded', () => {
 
       ctx.beginPath();
       ctx.arc(p.x, p.y, p.radius, 0, Math.PI * 2);
-      ctx.fillStyle = 'rgba(2, 132, 199, 0.25)';
+      ctx.fillStyle = 'rgba(56, 189, 248, 0.3)';
       ctx.fill();
 
       for (let j = i + 1; j < particleCount; j++) {
         let p2 = particles[j];
         let dist = Math.hypot(p.x - p2.x, p.y - p2.y);
 
-        if (dist < 120) {
+        if (dist < 130) {
           ctx.beginPath();
           ctx.moveTo(p.x, p.y);
           ctx.lineTo(p2.x, p2.y);
-          ctx.strokeStyle = `rgba(2, 132, 199, ${0.15 - dist / 1200})`;
-          ctx.lineWidth = 0.8;
+          ctx.strokeStyle = `rgba(56, 189, 248, ${0.12 - dist / 1300})`;
+          ctx.lineWidth = 0.7;
           ctx.stroke();
         }
       }

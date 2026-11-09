@@ -5,199 +5,180 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>David | Portfolio Técnico IT</title>
   <link rel="stylesheet" href="styles.css">
+  <!-- Fuentes modernas de Google Fonts -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Fira+Code:wght@400;600&family=Inter:wght@300;400;600;700&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;700&family=Outfit:wght@300;400;500;600;700&display=swap" rel="stylesheet">
 </head>
 <body>
 
-  <!-- Fondo animado con partículas/red de nodos -->
+  <!-- Fondo animado interactivo (Canvas) -->
   <canvas id="bg-canvas"></canvas>
 
-  <div class="app-layout">
-    <!-- Menú de Navegación por Secciones (Navegación Interactiva) -->
-    <aside class="sidebar">
-      <div class="brand">
-        <span class="brand-code">&lt;David /&gt;</span>
-        <span class="status-dot" title="Disponible para proyectos"></span>
+  <!-- Barra de Navegación Superior -->
+  <header class="header">
+    <nav class="navbar">
+      <a href="#inicio" class="nav-brand">&lt;David /&gt;</a>
+      <ul class="nav-links" id="navLinks">
+        <li><a href="#inicio">Inicio</a></li>
+        <li><a href="#sobre-mi">Sobre mí</a></li>
+        <li><a href="#formacion">Formación</a></li>
+        <li><a href="#habilidades">Habilidades</a></li>
+        <li><a href="#proyectos">Proyectos</a></li>
+        <li><a href="#experiencia">Experiencia</a></li>
+        <li><a href="#contacto" class="nav-contact-btn">Contacto</a></li>
+      </ul>
+      <div class="menu-toggle" id="mobileMenu">
+        <span></span>
+        <span></span>
+        <span></span>
       </div>
-      
-      <nav class="nav-menu">
-        <button class="nav-btn active" data-section="inicio">
-          <svg class="icon" viewBox="0 0 24 24"><path fill="currentColor" d="M10 20v-6h4v6h5v-8h3L12 3L2 12h3v8z"/></svg>
-          <span>Inicio</span>
-        </button>
-        <button class="nav-btn" data-section="sobre-mi">
-          <svg class="icon" viewBox="0 0 24 24"><path fill="currentColor" d="M12 12c2.21 0 4-1.79 4-4s-1.79-4-4-4s-4 1.79-4 4s1.79 4 4 4zm0 2c-2.67 0-8 1.34-8 4v2h16v-2c0-2.66-5.33-4-8-4z"/></svg>
-          <span>Sobre mí</span>
-        </button>
-        <button class="nav-btn" data-section="formacion">
-          <svg class="icon" viewBox="0 0 24 24"><path fill="currentColor" d="M5 13.18v4L12 21l7-3.82v-4L12 17l-7-3.82zM12 3L1 9l11 6l9-4.91V17h2V9L12 3z"/></svg>
-          <span>Formación</span>
-        </button>
-        <button class="nav-btn" data-section="habilidades">
-          <svg class="icon" viewBox="0 0 24 24"><path fill="currentColor" d="M22.7 19l-9.1-9.1c.9-2.3.4-5-1.5-6.9c-2-2-5-2.4-7.4-1.3L9 6L6 9L1.6 4.7C.4 7.1.9 10.1 2.9 12.1c1.9 1.9 4.6 2.4 6.9 1.5l9.1 9.1c.4.4 1 .4 1.4 0l2.3-2.3c.5-.4.5-1.1.1-1.4z"/></svg>
-          <span>Habilidades</span>
-        </button>
-        <button class="nav-btn" data-section="proyectos">
-          <svg class="icon" viewBox="0 0 24 24"><path fill="currentColor" d="M20 6h-8l-2-2H4c-1.1 0-1.99.9-1.99 2L2 18c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V8c0-1.1-.9-2-2-2zm0 12H4V8h16v10z"/></svg>
-          <span>Proyectos</span>
-        </button>
-        <button class="nav-btn" data-section="experiencia">
-          <svg class="icon" viewBox="0 0 24 24"><path fill="currentColor" d="M20 6h-4V4c0-1.11-.89-2-2-2h-4c-1.11 0-2 .89-2 2v2H4c-1.11 0-1.99.89-1.99 2L2 19c0 1.11.89 2 2 2h16c1.11 0 2-.89 2-2V8c0-1.11-.89-2-2-2zm-6 0h-4V4h4v2z"/></svg>
-          <span>Experiencia</span>
-        </button>
-        <button class="nav-btn" data-section="contacto">
-          <svg class="icon" viewBox="0 0 24 24"><path fill="currentColor" d="M20 4H4c-1.1 0-1.99.9-1.99 2L2 18c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V6c0-1.1-.9-2-2-2zm0 4l-8 5l-8-5V6l8 5l8-5v2z"/></svg>
-          <span>Contacto</span>
-        </button>
-      </nav>
+    </nav>
+  </header>
 
-      <div class="sidebar-footer">
-        <p>&copy; 2026 David</p>
+  <main class="main-container">
+
+    <!-- SECCIÓN INICIO -->
+    <section id="inicio" class="hero-section">
+      <div class="hero-content reveal">
+        <div class="tech-avatar">
+          <div class="avatar-ring"></div>
+          <span class="avatar-text">&lt;IT&gt;</span>
+        </div>
+        <h1 class="glitch-title">David de la Osa</h1>
+        <h2 class="typewriter-container"><span id="typewriter"></span><span class="cursor">|</span></h2>
+        <p class="hero-quote">"Transformando problemas complejos en soluciones informáticas eficientes."</p>
+        <div class="hero-buttons">
+          <a href="#proyectos" class="btn btn-primary">Ver Proyectos</a>
+          <a href="#contacto" class="btn btn-outline">Contactar</a>
+        </div>
       </div>
-    </aside>
+    </section>
 
-    <!-- Área de Contenido Principal -->
-    <main class="content-area">
-      
-      <!-- SECCIÓN INICIO -->
-      <section id="inicio" class="content-section active">
-        <div class="hero-container">
-          <div class="tech-avatar">
-            <div class="avatar-ring"></div>
-            <span class="avatar-text">&lt;IT&gt;</span>
-          </div>
-          <h1 class="glitch-text">David</h1>
-          <h2 class="typewriter-text"><span id="typewriter"></span><span class="cursor">|</span></h2>
-          <p class="quote">"Transformando problemas complejos en soluciones informáticas eficientes."</p>
-          <div class="hero-actions">
-            <button class="btn btn-primary switch-tab" data-target="contacto">Contactar</button>
-            <button class="btn btn-outline switch-tab" data-target="proyectos">Ver Proyectos</button>
-          </div>
+    <!-- SECCIÓN SOBRE MÍ -->
+    <section id="sobre-mi" class="section">
+      <h2 class="section-title reveal">Sobre mí</h2>
+      <div class="card reveal tilt-card">
+        <div class="card-icon">
+          <svg viewBox="0 0 24 24" width="32" height="32"><path fill="#38bdf8" d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10s10-4.48 10-10S17.52 2 12 2zm1 15h-2v-6h2v6zm0-8h-2V7h2v2z"/></svg>
         </div>
-      </section>
+        <h3>Identidad Profesional</h3>
+        <p>Apasionado por la tecnología, los sistemas informáticos y la administración de redes. Actualmente curso mis estudios técnicos en <strong>Sistemas Microinformáticos y Redes (2º SMR)</strong> con el objetivo claro de consolidarme como un <strong>Técnico Experto en Informática</strong>.</p>
+        <p>Me enfoco en comprender la infraestructura detrás de cada entorno, aplicando un análisis metódico para la resolución de incidencias y manteniendo un aprendizaje constante en ciberseguridad, automatización y virtualización.</p>
+      </div>
+    </section>
 
-      <!-- SECCIÓN SOBRE MÍ -->
-      <section id="sobre-mi" class="content-section">
-        <h2 class="section-title">Sobre mí</h2>
-        <div class="tilt-card card">
-          <div class="card-icon">
-            <svg viewBox="0 0 24 24" width="40" height="40"><path fill="#0284c7" d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10s10-4.48 10-10S17.52 2 12 2zm1 15h-2v-6h2v6zm0-8h-2V7h2v2z"/></svg>
-          </div>
-          <h3>Identidad Profesional</h3>
-          <p>Apasionado por la tecnología, los sistemas informáticos y la administración de redes. Actualmente curso mi formación técnica en <strong>Sistemas Microinformáticos y Redes (2º SMR)</strong> con el objetivo de convertirme en un <strong>Técnico Experto en Informática</strong>.</p>
-          <p>Me enfoco en comprender la infraestructura detrás de cada sistema, resolver incidencias con metodología analítica y mantener una evolución continua en ciberseguridad, automatización y virtualización.</p>
-        </div>
-      </section>
+    <!-- SECCIÓN FORMACIÓN -->
+    <section id="formacion" class="section">
+      <h2 class="section-title reveal">Formación Académica</h2>
+      <div class="card reveal tilt-card">
+        <span class="badge">En Curso</span>
+        <h3>Técnico en Sistemas Microinformáticos y Redes (SMR)</h3>
+        <p class="subtitle">Formación Profesional de Grado Medio</p>
+        <ul class="styled-list">
+          <li>Montaje, diagnóstico y mantenimiento preventivo/correctivo de equipos hardware.</li>
+          <li>Administración de Sistemas Operativos en Red (Linux CLI / Windows Server).</li>
+          <li>Configuración avanzada de servicios locales (DNS, DHCP, Active Directory, Firewalls).</li>
+          <li>Automatización de procesos mediante scripting y control de versiones con Git.</li>
+        </ul>
+      </div>
+    </section>
 
-      <!-- SECCIÓN FORMACIÓN -->
-      <section id="formacion" class="content-section">
-        <h2 class="section-title">Formación Académica</h2>
-        <div class="tilt-card card">
-          <span class="badge">En Curso</span>
-          <h3>Técnico en Sistemas Microinformáticos y Redes (SMR)</h3>
-          <p class="subtitle">Formación Profesional de Grado Medio</p>
-          <ul class="styled-list">
-            <li>Montaje, diagnóstico y mantenimiento preventivo/correctivo de hardware.</li>
-            <li>Administración de Sistemas Operativos en Red (Linux CLI / Windows Server).</li>
-            <li>Configuración de servicios de red (DNS, DHCP, Active Directory, Firewalls).</li>
-            <li>Automatización de tareas mediante scripting y control de versiones con Git.</li>
+    <!-- SECCIÓN HABILIDADES -->
+    <section id="habilidades" class="section">
+      <h2 class="section-title reveal">Habilidades & Competencias</h2>
+      <div class="grid-2">
+        <div class="card reveal tilt-card">
+          <h3 class="card-subtitle">
+            <svg viewBox="0 0 24 24" width="22" height="22"><path fill="#38bdf8" d="M9.4 16.6L4.8 12l4.6-4.6L8 6l-6 6l6 6l1.4-1.4zm5.2 0l4.6-4.6l-4.6-4.6L16 6l6 6l-6 6l-1.4-1.4z"/></svg>
+            Competencias Técnicas
+          </h3>
+          <ul class="skills-tags">
+            <li>Linux CLI</li>
+            <li>Windows Server</li>
+            <li>PowerShell</li>
+            <li>Python</li>
+            <li>Redes TCP/IP</li>
+            <li>Ciberseguridad</li>
+            <li>Git & GitHub</li>
           </ul>
         </div>
-      </section>
-
-      <!-- SECCIÓN HABILIDADES -->
-      <section id="habilidades" class="content-section">
-        <h2 class="section-title">Habilidades & Competencias</h2>
-        <div class="grid-2">
-          <div class="tilt-card card">
-            <h3 class="card-subtitle">
-              <svg viewBox="0 0 24 24" width="24" height="24"><path fill="#0284c7" d="M9.4 16.6L4.8 12l4.6-4.6L8 6l-6 6l6 6l1.4-1.4zm5.2 0l4.6-4.6l-4.6-4.6L16 6l6 6l-6 6l-1.4-1.4z"/></svg>
-              Competencias Técnicas
-            </h3>
-            <ul class="skills-tags">
-              <li>Linux CLI</li>
-              <li>Windows Server</li>
-              <li>PowerShell</li>
-              <li>Python</li>
-              <li>Redes & TCP/IP</li>
-              <li>Seguridad IT</li>
-              <li>Git & GitHub</li>
-            </ul>
-          </div>
-          <div class="tilt-card card">
-            <h3 class="card-subtitle">
-              <svg viewBox="0 0 24 24" width="24" height="24"><path fill="#0284c7" d="M16 11c1.66 0 2.99-1.34 2.99-3S17.66 5 16 5s-3 1.34-3 3s1.34 3 3 3zm-8 0c1.66 0 2.99-1.34 2.99-3S9.66 5 8 5S5 6.34 5 8s1.34 3 3 3zm0 2c-2.33 0-7 1.17-7 3.5V19h14v-2.5c0-2.33-4.67-3.5-7-3.5z"/></svg>
-              Habilidades Personales
-            </h3>
-            <ul class="styled-list">
-              <li>Trabajo en equipo y colaboración fluida.</li>
-              <li>Alta capacidad de aprendizaje autónomo.</li>
-              <li>Resolución lógica y estructurada de problemas.</li>
-              <li>Adaptabilidad técnica a nuevos entornos.</li>
-            </ul>
-          </div>
-        </div>
-      </section>
-
-      <!-- SECCIÓN PROYECTOS -->
-      <section id="proyectos" class="content-section">
-        <h2 class="section-title">Proyectos Destacados</h2>
-        <div class="grid-2">
-          <div class="tilt-card card">
-            <h3>Automatización & Scripting en Python</h3>
-            <p>Desarrollo de scripts de terminal con captura y validación de datos en bucle, control de errores y formateo avanzado en consola.</p>
-            <div class="tags-container">
-              <span class="tag">Python</span>
-              <span class="tag">CLI</span>
-              <span class="tag">Git</span>
-            </div>
-          </div>
-          <div class="tilt-card card">
-            <h3>Infraestructura de Redes & Virtualización</h3>
-            <p>Despliegue y simulación de redes locales, configuración de dominios, directivas de grupo, servicios DHCP/DNS y reglas de seguridad.</p>
-            <div class="tags-container">
-              <span class="tag">Linux</span>
-              <span class="tag">Windows Server</span>
-              <span class="tag">Redes</span>
-            </div>
-          </div>
-        </div>
-      </section>
-
-      <!-- SECCIÓN EXPERIENCIA -->
-      <section id="experiencia" class="content-section">
-        <h2 class="section-title">Experiencia Laboral</h2>
-        <div class="tilt-card card">
-          <div class="card-header">
-            <h3>Técnico Informático en Prácticas</h3>
-            <span class="company-badge">Solions</span>
-          </div>
-          <p>Desempeño de tareas técnicas de mantenimiento e infraestructura dentro de la empresa Solions:</p>
+        <div class="card reveal tilt-card">
+          <h3 class="card-subtitle">
+            <svg viewBox="0 0 24 24" width="22" height="22"><path fill="#38bdf8" d="M16 11c1.66 0 2.99-1.34 2.99-3S17.66 5 16 5s-3 1.34-3 3s1.34 3 3 3zm-8 0c1.66 0 2.99-1.34 2.99-3S9.66 5 8 5S5 6.34 5 8s1.34 3 3 3zm0 2c-2.33 0-7 1.17-7 3.5V19h14v-2.5c0-2.33-4.67-3.5-7-3.5z"/></svg>
+            Habilidades Personales
+          </h3>
           <ul class="styled-list">
-            <li>Mantenimiento técnico, diagnóstico y solución de averías en equipos informáticos.</li>
-            <li>Instalación, preparación y despliegue de sistemas operativos y herramientas informáticas.</li>
-            <li>Soporte de primer nivel a usuarios y asistencia en la red local de la empresa.</li>
+            <li>Trabajo en equipo y colaboración fluida.</li>
+            <li>Alta capacidad de aprendizaje autónomo.</li>
+            <li>Resolución lógica y estructurada de problemas.</li>
+            <li>Adaptabilidad tecnológica ante nuevos retos.</li>
           </ul>
         </div>
-      </section>
+      </div>
+    </section>
 
-      <!-- SECCIÓN CONTACTO -->
-      <section id="contacto" class="content-section">
-        <h2 class="section-title">Contacto</h2>
-        <div class="tilt-card card text-center">
-          <h3>¿Hablamos?</h3>
-          <p>Estoy abierto a nuevas oportunidades, prácticas o proyectos técnicos.</p>
-          <a href="mailto:fernandezdaviddelaosa3@gmail.com" class="email-btn">
-            <svg viewBox="0 0 24 24" width="20" height="20"><path fill="currentColor" d="M20 4H4c-1.1 0-1.99.9-1.99 2L2 18c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V6c0-1.1-.9-2-2-2zm0 4l-8 5l-8-5V6l8 5l8-5v2z"/></svg>
-            fernandezdaviddelaosa3@gmail.com
-          </a>
+    <!-- SECCIÓN PROYECTOS -->
+    <section id="proyectos" class="section">
+      <h2 class="section-title reveal">Proyectos Destacados</h2>
+      <div class="grid-2">
+        <div class="card reveal tilt-card">
+          <h3>Automatización & Scripting en Python</h3>
+          <p>Desarrollo de herramientas de terminal interactivas con validación de entradas mediante bucles, control exhaustivo de excepciones y diseño de salidas visuales.</p>
+          <div class="tags-container">
+            <span class="tag">Python</span>
+            <span class="tag">CLI</span>
+            <span class="tag">Git</span>
+          </div>
         </div>
-      </section>
+        <div class="card reveal tilt-card">
+          <h3>Infraestructura de Redes & Sistemas</h3>
+          <p>Simulación y despliegue de redes locales, configuración de dominios, directivas de seguridad corporativa y gestión de servicios de red críticos.</p>
+          <div class="tags-container">
+            <span class="tag">Linux</span>
+            <span class="tag">Windows Server</span>
+            <span class="tag">Redes</span>
+          </div>
+        </div>
+      </div>
+    </section>
 
-    </main>
-  </div>
+    <!-- SECCIÓN EXPERIENCIA -->
+    <section id="experiencia" class="section">
+      <h2 class="section-title reveal">Experiencia Laboral</h2>
+      <div class="card reveal tilt-card">
+        <div class="card-header">
+          <h3>Técnico Informático en Prácticas (FCT)</h3>
+          <span class="company-badge">Solions</span>
+        </div>
+        <p>Participación activa en los departamentos de soporte e infraestructura técnica de la empresa Solions:</p>
+        <ul class="styled-list">
+          <li>Diagnóstico, resolución de averías y mantenimiento preventivo/correctivo de equipos.</li>
+          <li>Despliegue, instalación y actualización de sistemas operativos y software corporativo.</li>
+          <li>Soporte técnico directo a usuarios y asistencia en la gestión de redes locales.</li>
+        </ul>
+      </div>
+    </section>
+
+    <!-- SECCIÓN CONTACTO -->
+    <section id="contacto" class="section">
+      <h2 class="section-title reveal">Contacto</h2>
+      <div class="card reveal tilt-card text-center contact-box">
+        <h3>¿Hablamos?</h3>
+        <p>Estoy abierto a nuevas oportunidades, retos profesionales o proyectos tecnológicos.</p>
+        <a href="mailto:fernandezdaviddelaosa3@gmail.com" class="email-btn">
+          <svg viewBox="0 0 24 24" width="20" height="20"><path fill="currentColor" d="M20 4H4c-1.1 0-1.99.9-1.99 2L2 18c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V6c0-1.1-.9-2-2-2zm0 4l-8 5l-8-5V6l8 5l8-5v2z"/></svg>
+          fernandezdaviddelaosa3@gmail.com
+        </a>
+      </div>
+    </section>
+
+  </main>
+
+  <!-- Footer -->
+  <footer class="footer">
+    <p>&copy; 2026 David de la Osa. Creado para GitHub Pages.</p>
+  </footer>
 
   <script src="script.js"></script>
 </body>
