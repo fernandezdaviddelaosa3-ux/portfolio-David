@@ -8,7 +8,6 @@ document.addEventListener('DOMContentLoaded', () => {
     navLinks.classList.toggle('active');
   });
 
-  // Cerrar menú al hacer clic en cualquier enlace
   document.querySelectorAll('.nav-links a').forEach(link => {
     link.addEventListener('click', () => {
       navLinks.classList.remove('active');
@@ -18,8 +17,9 @@ document.addEventListener('DOMContentLoaded', () => {
   // 2. EFECTO MÁQUINA DE ESCRIBIR (Typewriter)
   const textArray = [
     "Estudiante de 2º SMR",
-    "Futuro Técnico Experto en IT",
-    "Apasionado de las Redes y Linux"
+    "Especializándome en Sistemas",
+    "Técnico en Informática de Oficina",
+    "Futuro Técnico Experto en IT"
   ];
   let textIndex = 0;
   let charIndex = 0;
@@ -63,9 +63,9 @@ document.addEventListener('DOMContentLoaded', () => {
   };
 
   window.addEventListener('scroll', revealOnScroll);
-  revealOnScroll(); // Ejecutar al cargar por si hay elementos visibles
+  revealOnScroll();
 
-  // 4. EFECTO TILT (Inclinación 3D sutil en tarjetas)
+  // 4. EFECTO TILT (Inclinación 3D interactiva en tarjetas)
   const tiltCards = document.querySelectorAll('.tilt-card');
 
   tiltCards.forEach(card => {
