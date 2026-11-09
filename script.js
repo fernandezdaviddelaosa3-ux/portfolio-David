@@ -1,6 +1,6 @@
 document.addEventListener('DOMContentLoaded', () => {
 
-  // 1. MENÚ MÓVIL (Hamburguesa)
+  // 1. MENÚ MÓVIL
   const mobileMenu = document.getElementById('mobileMenu');
   const navLinks = document.getElementById('navLinks');
 
@@ -14,12 +14,12 @@ document.addEventListener('DOMContentLoaded', () => {
     });
   });
 
-  // 2. EFECTO MÁQUINA DE ESCRIBIR (Typewriter)
+  // 2. MÁQUINA DE ESCRIBIR
   const textArray = [
-    "Estudiante de 2º SMR",
-    "Especializándome en Sistemas",
-    "Técnico en Informática de Oficina",
-    "Futuro Técnico Experto en IT"
+    "Administración de Sistemas",
+    "Redes & Ciberseguridad",
+    "Automatización & Scripting",
+    "Técnico Informático"
   ];
   let textIndex = 0;
   let charIndex = 0;
@@ -48,38 +48,53 @@ document.addEventListener('DOMContentLoaded', () => {
 
   type();
 
-  // 3. ANIMACIONES DE APARICIÓN AL HACER SCROLL (Scroll Reveal)
+  // 3. ANIMACIONES Y EVENTOS DE SCROLL
+  const header = document.getElementById('header');
+  const scrollProgress = document.getElementById('scroll-progress');
   const revealElements = document.querySelectorAll('.reveal');
+  const parallaxTarget = document.querySelector('.parallax-target');
 
-  const revealOnScroll = () => {
+  window.addEventListener('scroll', () => {
+    const scrollTop = window.scrollY;
+    const docHeight = document.documentElement.scrollHeight - window.innerHeight;
+    
+    // 3.1 Barra de progreso de lectura superior
+    const scrollPercent = (scrollTop / docHeight) * 100;
+    scrollProgress.style.width = scrollPercent + '%';
+
+    // 3.2 Cambio del menú al hacer scroll
+    if (scrollTop > 50) {
+      header.classList.add('scrolled');
+    } else {
+      header.classList.remove('scrolled');
+    }
+
+    // 3.3 Efecto Parallax en la portada
+    if (parallaxTarget && scrollTop < window.innerHeight) {
+      parallaxTarget.style.transform = `translateY(${scrollTop * 0.3}px)`;
+      parallaxTarget.style.opacity = 1 - (scrollTop / (window.innerHeight * 0.8));
+    }
+
+    // 3.4 Scroll Reveal por sección
     const triggerBottom = window.innerHeight * 0.85;
-
     revealElements.forEach(el => {
       const boxTop = el.getBoundingClientRect().top;
       if (boxTop < triggerBottom) {
         el.classList.add('active');
       }
     });
-  };
+  });
 
-  window.addEventListener('scroll', revealOnScroll);
-  revealOnScroll();
+  // Disparar Scroll Reveal una vez al cargar
+  window.dispatchEvent(new Event('scroll'));
 
-  // 4. EFECTO TILT (Inclinación 3D interactiva en tarjetas)
+  // 4. EFECTO TILT (3D) EN TARJETAS
   const tiltCards = document.querySelectorAll('.tilt-card');
-
   tiltCards.forEach(card => {
     card.addEventListener('mousemove', (e) => {
       const rect = card.getBoundingClientRect();
-      const x = e.clientX - rect.left;
-      const y = e.clientY - rect.top;
-      
-      const centerX = rect.width / 2;
-      const centerY = rect.height / 2;
-
-      const rotateX = ((y - centerY) / centerY) * -4;
-      const rotateY = ((x - centerX) / centerX) * 4;
-
+      const rotateX = ((e.clientY - rect.top - rect.height / 2) / (rect.height / 2)) * -4;
+      const rotateY = ((e.clientX - rect.left - rect.width / 2) / (rect.width / 2)) * 4;
       card.style.transform = `perspective(1000px) rotateX(${rotateX}deg) rotateY(${rotateY}deg) translateY(-4px)`;
     });
 
@@ -88,7 +103,7 @@ document.addEventListener('DOMContentLoaded', () => {
     });
   });
 
-  // 5. FONDO ANIMADO DE RED NEURONAL / PARTÍCULAS (Canvas)
+  // 5. FONDO ANIMADO CANVAS (Red Tecnológica con mayor brillo y visibilidad)
   const canvas = document.getElementById('bg-canvas');
   const ctx = canvas.getContext('2d');
 
@@ -100,15 +115,15 @@ document.addEventListener('DOMContentLoaded', () => {
   window.addEventListener('resize', resizeCanvas);
 
   const particles = [];
-  const particleCount = 50;
+  const particleCount = 65; // Más partículas para que se note más lleno
 
   for (let i = 0; i < particleCount; i++) {
     particles.push({
       x: Math.random() * canvas.width,
       y: Math.random() * canvas.height,
-      vx: (Math.random() - 0.5) * 0.5,
-      vy: (Math.random() - 0.5) * 0.5,
-      radius: Math.random() * 1.5 + 1
+      vx: (Math.random() - 0.5) * 0.7,
+      vy: (Math.random() - 0.5) * 0.7,
+      radius: Math.random() * 2 + 1
     });
   }
 
@@ -125,19 +140,19 @@ document.addEventListener('DOMContentLoaded', () => {
 
       ctx.beginPath();
       ctx.arc(p.x, p.y, p.radius, 0, Math.PI * 2);
-      ctx.fillStyle = 'rgba(56, 189, 248, 0.3)';
+      ctx.fillStyle = 'rgba(56, 189, 248, 0.55)'; // Partículas mucho más visibles
       ctx.fill();
 
       for (let j = i + 1; j < particleCount; j++) {
         let p2 = particles[j];
         let dist = Math.hypot(p.x - p2.x, p.y - p2.y);
 
-        if (dist < 130) {
+        if (dist < 140) {
           ctx.beginPath();
           ctx.moveTo(p.x, p.y);
           ctx.lineTo(p2.x, p2.y);
-          ctx.strokeStyle = `rgba(56, 189, 248, ${0.12 - dist / 1300})`;
-          ctx.lineWidth = 0.7;
+          ctx.strokeStyle = `rgba(56, 189, 248, ${0.28 - dist / 500})`; // Líneas más marcadas
+          ctx.lineWidth = 0.9;
           ctx.stroke();
         }
       }
